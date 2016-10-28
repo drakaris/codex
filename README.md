@@ -1,2 +1,2 @@
-# Codex
-### A simple utility to manage TV shows
+# Parchment
+A light weight npm module, command line usage intended, that assists in curating, migrating and syncing TV shows.
