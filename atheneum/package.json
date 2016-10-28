@@ -1,12 +1,12 @@
 {
-  "name": "parchment",
+  "name": "atheneum",
   "version": "1.0.0",
   "description": "Parchment client side software",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Arjhun Srinivas",
+  "author": "Arjhun Srinivas <arjhun.s@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "async": "^2.1.2",
