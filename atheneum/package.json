@@ -1,6 +1,6 @@
 {
   "name": "atheneum",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "Parchment client side software",
   "main": "server.js",
   "scripts": {
@@ -8,6 +8,9 @@
   },
   "author": "Arjhun Srinivas <arjhun.s@gmail.com>",
   "license": "ISC",
+  "bin": {
+    "atheneum": "./server.js"
+  },
   "dependencies": {
     "async": "^2.1.2",
     "chalk": "^1.1.3",

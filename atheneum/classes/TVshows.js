@@ -26,7 +26,7 @@ module.exports = class TVshows {
 
   getSeason() {
     // Store season
-    this.season = this.file.match(/S\d{2}/g)[0];
+    this.season = this.file.match(/[Ss]\d{2}/g)[0];
     this.season = 'Season ' + parseInt(this.season.split('S')[1], 10);
   }
 
