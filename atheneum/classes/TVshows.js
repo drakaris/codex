@@ -12,7 +12,7 @@ module.exports = class TVshows {
 
   getName() {
     // Split filename for name generation
-    var linchpin = this.file.match(/S\d{2}E\d{2}(E\d{2})?/g)[0];
+    var linchpin = this.file.match(/[Ss]\d{2}[Ee]\d{2}([Ee]\d{2})?/g)[0];
     this.buffer = this.file.split('.');
     this.name = '';
     for (var i = 0; i < this.buffer.indexOf(linchpin); i++) {
