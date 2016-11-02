@@ -88,7 +88,7 @@ contents.forEach(function(item) {
     sanitizeQueue.push(item, function(err, oldName, newName) {
       if (err) throw err;
       if (oldName !== newName)
-        logger.warn('Sanitized: ' + oldName + ' -> ' + newName);
+        logger.notify('Sanitized: ' + oldName + ' -> ' + newName);
       // Sanitization done, push into processQueue
       processQueue.push(new TVshows(newName), function(err, tag) {
         if (err) throw err;

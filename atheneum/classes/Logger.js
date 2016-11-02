@@ -3,7 +3,7 @@ var chalk = require('chalk');
 module.exports = class Logger {
   constructor() {
     this.error = chalk.bold.red;
-    this.warn = chalk.bold.yellow;
+    this.warning = chalk.bold.yellow;
     this.success = chalk.bold.green;
   }
 
@@ -15,11 +15,11 @@ module.exports = class Logger {
     console.log(this.success('[INFO] ' + data));
   }
 
-  warn(data) {
-    console.log(this.warn('[WARN] ' + data));
+  notify(data) {
+    console.log(this.warning('[WARN] ' + data));
   }
 
-  error(data) {
+  critical(data) {
     console.log(this.error('[ERROR] ' + data));
   }
 }
