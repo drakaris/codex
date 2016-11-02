@@ -11,6 +11,7 @@ var mkdirp = require('mkdirp');
  * Custom Functions *
  *******************/
 var scan = require('./modules/scan');
+var sanitize = require('./modules/customReplace');
 
 /******************
  * Custom Classes *
@@ -28,9 +29,12 @@ var logger = new Logger();
  * Custom Queues *
  ****************/
 var sanitizeQueue = async.queue(function(task, callback) {
-  // console.log('Sanitizing: ' + task);
+  // Get old filepath.
   var oldPath = process.cwd() + '/' + task;
+  // Generate new file name
   var newFileName = task.replace(/\s/g, '.');
+  // Sanitize identifier
+  newFileName = sanitize.cleanIdentifier(newFileName);
   var newPath = process.cwd() + '/' + newFileName;
   fs.renameSync(oldPath, newPath);
   return callback(null, task, newFileName);
@@ -79,21 +83,17 @@ if (contents.length && !fs.existsSync(dir)) {
 }
 
 contents.forEach(function(item) {
-  if (item.match(/[Ss]\d{2}[Ee]\d{2}/g)) {
-    if (item.match(/\s/g)) {
-      sanitizeQueue.push(item, function(err, oldName, newName) {
-        if (err) throw err;
+  if (item.match(/[Ss]\d{2}[Ee]\d{2}([Ee]\d{2})?/g)) {
+    // Push items into sanitizeQueue
+    sanitizeQueue.push(item, function(err, oldName, newName) {
+      if (err) throw err;
+      if (oldName !== newName)
         logger.warn('Sanitized: ' + oldName + ' -> ' + newName);
-        processQueue.push(new TVshows(newName), function(err, tag) {
-          if (err) throw err;
-          logger.log('Moved ' + tag);
-        });
-      });
-    } else {
-      processQueue.push(new TVshows(item), function(err, tag) {
+      // Sanitization done, push into processQueue
+      processQueue.push(new TVshows(newName), function(err, tag) {
         if (err) throw err;
         logger.log('Moved ' + tag);
       });
-    }
+    });
   }
 });
