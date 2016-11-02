@@ -1,2 +1,2 @@
 # Parchment
-A light weight npm module, command line usage intended, that assists in curating, migrating and syncing TV shows.
+A light weight client - server, command line package, that assists in curating, migrating and syncing TV shows.
