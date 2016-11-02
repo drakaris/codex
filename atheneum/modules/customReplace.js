@@ -8,7 +8,6 @@ function cleanIdentifier(string) {
       tmp[idx] = item.toUpperCase().replace(/-/g, '');
     }
   });
-  console.log(tmp.join('.'));
   return tmp.join('.');
 }
 
