@@ -1,4 +1,4 @@
-module.exports = class TVshows {
+var exp = class TVshows {
   constructor(file) {
     this.file = file;
     this.process();
@@ -38,6 +38,14 @@ module.exports = class TVshows {
   }
 
   display() {
-    console.log(`NAME : ${this.name}\nSEASON : ${this.season}\nDEST : ${this.dest}`);
+    console.log(`NAME : ${this.name}\nSEASON : ${this.season}\nLOCATION : ${this.update}`);
   }
+}
+
+// Class export logic
+if (module.parent) {
+  module.exports = exp;
+} else {
+  var test = new exp('Arrow.S05E05.HDTV.x264-LOL[ettv]');
+  test.display();
 }

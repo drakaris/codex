@@ -1,6 +1,6 @@
 var chalk = require('chalk');
 
-module.exports = class Logger {
+var exp = class Logger {
   constructor() {
     this.error = chalk.bold.red;
     this.warning = chalk.bold.yellow;
@@ -22,4 +22,12 @@ module.exports = class Logger {
   critical(data) {
     console.log(this.error('[ERROR] ' + data));
   }
+}
+
+// Class export logic
+if (module.parent) {
+  module.exports = exp;
+} else {
+  var test = new exp();
+  test.notify('Test Data');
 }
