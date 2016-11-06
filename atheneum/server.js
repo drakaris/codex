@@ -11,7 +11,7 @@ var mkdirp = require('mkdirp');
  * Custom Functions *
  *******************/
 var scan = require('./modules/scan');
-var sanitize = require('./modules/customReplace');
+var sanitize = require('./modules/sanitize');
 
 /******************
  * Custom Classes *
@@ -32,18 +32,13 @@ var sanitizeQueue = async.queue(function(task, callback) {
   // Get old filepath.
   var oldPath = process.cwd() + '/' + task;
   // Generate new file name
-  var newFileName = task.replace(/\s/g, '.');
-  // Sanitize identifier
-  newFileName = sanitize.cleanIdentifier(newFileName);
+  var newFileName = sanitize.cleanFileName(task);
   var newPath = process.cwd() + '/' + newFileName;
   fs.renameSync(oldPath, newPath);
   return callback(null, task, newFileName);
 });
 
 var processQueue = async.queue(function(task, callback) {
-  // console.log('Processing: ' + task.file);
-  // console.log('DEST: ' + task.newPath);
-
   fs.stat(task.newPath, function(err, stats) {
     if (err) {
       mkdirp(task.newPath, function(err) {
