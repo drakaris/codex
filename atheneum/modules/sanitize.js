@@ -8,7 +8,7 @@ function cleanFileName(file) {
 }
 
 function removeWebsite(file) {
-  file = file.replace(/w{3}\..+\.[com]+.-./g, '');
+  file = file.replace(/(\[.?)?w{3}\..+\.[com]+(.?\])?.-./g, '');
   // console.log('removeWebsite : ' + file);
   return cleanIdentifier(file);
 }
