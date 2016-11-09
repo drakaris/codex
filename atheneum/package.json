@@ -1,6 +1,6 @@
 {
   "name": "atheneum",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Parchment client side command-line utility",
   "main": "server.js",
   "scripts": {
